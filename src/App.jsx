@@ -37,8 +37,8 @@ const App = () => {
 				setMovieList([]);
 				return;
 			}
-			console.log(data);
-			setMovieList(data.result || []);
+			// console.log(data);
+			setMovieList(data.results || []);
 		} catch (error) {
 			console.error(`Error fetching Movie: ${error}`);
 			setErrorMessage(`Error fetching Movies. Please try again.`);
@@ -59,7 +59,7 @@ const App = () => {
 						<img src="./hero.png" alt="Hero Banner" />
 						<h1>
 							Find <span className="text-gradient">Movies </span>
-							you will enjoy without a Hassel !
+							you will enjoy without a Hassel!
 						</h1>
 						<Search
 							searchTerm={searchTerm}
@@ -68,8 +68,19 @@ const App = () => {
 					</header>
 					<section>
 						<h1>All Movies</h1>
-						{errorMessage && (
+
+						{isLoading ? (
+							<p className="text-white">Loadig ...</p>
+						) : errorMessage ? (
 							<p className="text-red-500">{errorMessage}</p>
+						) : (
+							<ul>
+								{movieList.map((movie) => (
+									<p key={movie.id} className="text-white">
+										{movie.title}
+									</p>
+								))}
+							</ul>
 						)}
 					</section>
 				</div>
