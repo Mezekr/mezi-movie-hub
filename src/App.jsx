@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import MovieCard from './components/MovieCard';
 import Search from './components/Search';
 import Spinner from './components/Spinner';
 
@@ -52,41 +53,37 @@ const App = () => {
 		fetchMovies();
 	}, []);
 	return (
-		<>
-			<main>
-				<div className="pattern" />
-				<div className="wrapper">
-					<header>
-						<img src="./hero.png" alt="Hero Banner" />
-						<h1>
-							Find <span className="text-gradient">Movies </span>
-							you will enjoy without a Hassel!
-						</h1>
-						<Search
-							searchTerm={searchTerm}
-							setSearchTerm={setSearchTerm}
-						/>
-					</header>
-					<section>
-						<h2 className="mt-[40px]">All Movies</h2>
+		<main>
+			<div className="pattern" />
+			<div className="wrapper">
+				<header>
+					<img src="./hero.png" alt="Hero Banner" />
+					<h1>
+						Find <span className="text-gradient">Movies </span>
+						you will enjoy without a Hassel!
+					</h1>
+					<Search
+						searchTerm={searchTerm}
+						setSearchTerm={setSearchTerm}
+					/>
+				</header>
+				<section className="all-movies">
+					<h2 className="mt-[40px] mx-auto">All Movies</h2>
 
-						{isLoading ? (
-							<Spinner />
-						) : errorMessage ? (
-							<p className="text-red-500">{errorMessage}</p>
-						) : (
-							<ul>
-								{movieList.map((movie, index) => (
-									<p key={movie.id} className="text-white">
-										{index} - {movie.title}
-									</p>
-								))}
-							</ul>
-						)}
-					</section>
-				</div>
-			</main>
-		</>
+					{isLoading ? (
+						<Spinner />
+					) : errorMessage ? (
+						<p className="text-red-500">{errorMessage}</p>
+					) : (
+						<ul>
+							{movieList.map((movie) => (
+								<MovieCard key={movie.id} movie={movie} />
+							))}
+						</ul>
+					)}
+				</section>
+			</div>
+		</main>
 	);
 };
 
