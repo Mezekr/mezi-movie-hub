@@ -37,8 +37,13 @@ Make sure you have the following installed on your machine:
 **Step 1 - Clone the repository**
 
 ```bash
+<<<<<<< HEAD
 git  clone  https://github.com/
 cd
+=======
+git  clone  git@github.com:Mezekr/mezi-movie-hub.git
+cd mezi-movie-hub
+>>>>>>> eac3136 (add project description, features & local setup)
 ```
 
 **Step 2 - Installation**
