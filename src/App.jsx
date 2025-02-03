@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'react-use';
-import { updateSearchCount } from './appwrite';
+import { getTrendingMovies, updateSearchCount } from './appwrite';
 import MovieCard from './components/MovieCard';
 import Search from './components/Search';
 import Spinner from './components/Spinner';
@@ -22,6 +22,7 @@ const App = () => {
 	const [movieList, setMovieList] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+	const [trendingMovies, setTrendingMovies] = useState([]);
 
 	useDebounce(() => setDebouncedSearchTerm(searchTerm), 1000, [searchTerm]);
 
@@ -62,9 +63,23 @@ const App = () => {
 		}
 	};
 
+	const loadTreandingMovies = async () => {
+		try {
+			const movies = await getTrendingMovies();
+			setTrendingMovies(movies);
+		} catch (error) {
+			console.error(`Error fetching trending movies: ${error}`);
+		}
+	};
+
 	useEffect(() => {
 		fetchMovies(debouncedSearchTerm);
 	}, [debouncedSearchTerm]);
+
+	useEffect(() => {
+		loadTreandingMovies();
+	}, []);
+
 	return (
 		<main>
 			<div className="pattern" />
