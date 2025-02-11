@@ -1,12 +1,14 @@
 # Mezi-movie-Hub
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2cf1210c-4085-4b49-b378-346ab191c397/deploy-status)](https://app.netlify.com/sites/mezi-moviehub/deploys)
+
 ### Mezi-movie-hub is a website that offers a sleek and modern experience for browsing and searching for movies.
 
 Developed using the latest React.js 19 for the frontend, Appwrite to implement the treanding movie algorithm as backend services and styled with TailwindCSS.
 
 ## 🛠 Tech Stack
 
--   React.js (latest v19)
+-   React.js ( latest v19 )
 -   Appwrite
 -   Tailwindcss (v4)
 -   The Movie Database (TMDB) API
